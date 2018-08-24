@@ -1,8 +1,16 @@
 {{> header}}
 
-<nav>
-  <h3>Login</h3><br>
-  <form method="POST">
-    <input type="text"
+<div class="text-center">
+  <form class="form-signin" method="POST" action="/home">
+    <img class="mb-4" src="./logosquare.png" alt="womblr" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Welcome back kinky Womblrs!</h1>
+    <label for="inputID" class="sr-only">User ID</label>
+    <input type="username" id="inputID" class="form-control" name="username" placeholder="User ID" required autofocus>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
   </form>
-</nav>
+  <br>
+  <form class="form-signin" method="POST" action="/home">
+    <h1 class="h3 mb-3 font-weight-normal">Or become a Womblr today!</h1>
+    <button id = "signup" class="btn btn-lg btn-primary btn-block" type="submit" name="signup" value="true">Sign up</button>
+  </form>
+</div>

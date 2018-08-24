@@ -12,6 +12,14 @@ router.get('/home', (req, res) => {
   res.render('./front-page')
 })
 
+router.post('/home', (req, res) => {
+  if (req.body.signup == "true") {
+    res.redirect('/create')
+  } else {
+    res.redirect('/womble/' + req.body.username)
+  }
+})
+
 router.get('/womble', (req, res) => {
     db.getWombles()
     .then(wombles => {
@@ -28,13 +36,6 @@ router.get('/womble/:id', (req, res) => {
     })
 
 })
-
-// router.get('/test', (req, res) =>{
-//     db.womblesAndKinks(41)
-//     .then(data => {
-//      res.send(data)
-//     })
-// })
 
 router.get('/search', (req, res)=>{
     res.render('search')
