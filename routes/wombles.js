@@ -5,7 +5,11 @@ const db = require('../db')
 
 
 router.get('/', (req, res)=> {
-   res.send('wowoowososoowow')
+   res.render('./landing')
+})
+
+router.get('/home', (req, res) => {
+  res.render('./front-page')
 })
 
 router.get('/womble', (req, res) => {
