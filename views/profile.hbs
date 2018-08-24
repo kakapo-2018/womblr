@@ -1,9 +1,13 @@
-{{username}}
-<h1>test</h1>
+<img src="{{profilepic}}">
+<h1>{{username}}, {{age}}</h1>
+<p>{{bio}}</p>
 
 
+<h3>KINKS</h3>
 <ul>
 {{#each kinks}}
 <li>{{this}}</li>
 {{/each}}
 </ul>
+
+<a href='/search'>Search</a>

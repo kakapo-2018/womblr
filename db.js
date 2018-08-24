@@ -7,7 +7,8 @@ module.exports = {
   getWomble,
   getWombles,
   createWomble,
-  womblesAndKinks
+  womblesAndKinks,
+  findKinkyWomble
 }
 
 //db functions go here
@@ -22,13 +23,13 @@ function getWomble (id, testConn) {
   return conn('users').where('id', id).first()
 }
 
-function createWomble (username, age, bio, profile_pic, kinks, testConn){
+function createWomble (username, age, bio, profilepic, kinks, testConn){
     const conn = testConn || connection
     return conn ('users').insert({
         username: username,
         age: age,
         bio: bio,
-        profile_pic: profile_pic
+        profile_pic: profilepic
     })
     .then(userID => {
         createKinks(userID[0], kinks);
@@ -55,6 +56,8 @@ function createKinks (userID, kinks, testConn) {
     })
 }
 
+
+
 function womblesAndKinks (userID, testConn) {
     const conn = testConn || connection
     let kinks = []
@@ -76,6 +79,16 @@ function womblesAndKinks (userID, testConn) {
      })
 }
 
+function findKinkyWomble(id, testConn){
+    // console.log(id);
+    const conn = testConn || connection
+    return conn('users')
+    .join('users_and_kinks', 'users_and_kinks.user_id', '=', 'users.id')
+    .where('kink_id',id)
+    .then(data =>{
+        return data
+    })
+}
 // function saveTimes(time, testConn) {
 //   const conn = testConn || connection
 //   return conn('users').insert({'name': time})

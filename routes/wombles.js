@@ -32,6 +32,57 @@ router.get('/test', (req, res) =>{
     })
 })
 
+router.get('/search', (req, res)=>{
+    res.render('search')
+})
+
+router.post('/search', (req, res)=>{
+    
+    let returnedVal = req.body;
+    let kinkyy = Object.keys(returnedVal)
+    console.log(kinkyy[0]);
+    let id;
+
+    switch(kinkyy[0]) {
+        case 'balloons':
+            id = 1
+            break;
+        case 'paws':
+        id = 2
+            break;
+            case 'humans':
+            id =  3
+            break;
+        case 'voyeurism':
+        id = 4
+            break;
+            case 'bdsm':
+            id = 5
+            break;
+        case 'cuddles':
+        id = 6
+            break;
+            case 'ebcrj':
+            id = 7
+            break;
+        case 'exhibitionism':
+        id = 8
+            break;
+        default:
+        id = 1
+    }
+    
+    db.findKinkyWomble(id)
+    .then(data => {
+        console.log(data)
+       res.render('searchResults', {data})
+        
+    })
+})
+
+
+
+
 router.get('/create', (req, res) =>{
     res.render('./signup')
 })
