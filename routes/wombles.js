@@ -17,11 +17,19 @@ router.get('/womble', (req, res) => {
 })
 
 router.get('/womble/:id', (req, res) => {
-    db.getWomble(req.params.id)
+    //db.womblesAndKinks(req.params.id)
+    db.womblesAndKinks(req.params.id)
     .then(womble => {
-        res.send(womble)
+        res.render('profile', womble)
     })
 
+})
+
+router.get('/test', (req, res) =>{
+    db.womblesAndKinks(41)
+    .then(data => {
+     res.send(data)
+    })
 })
 
 router.get('/create', (req, res) =>{

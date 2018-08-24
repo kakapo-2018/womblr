@@ -6,7 +6,8 @@ const connection = require('knex')(config)
 module.exports = {
   getWomble,
   getWombles,
-  createWomble
+  createWomble,
+  womblesAndKinks
 }
 
 //db functions go here
@@ -52,6 +53,27 @@ function createKinks (userID, kinks, testConn) {
                 })
         }
     })
+}
+
+function womblesAndKinks (userID, testConn) {
+    const conn = testConn || connection
+    let kinks = []
+    return conn('users_and_kinks')
+     .where('user_id', userID)
+     .join('kinks', 'kinks.id', '=', 'users_and_kinks.kink_id')
+     .then(data => {
+        data.forEach(obj => {
+            kinks.push(obj['kink'])
+        })
+     })
+     .then(function () {
+         return getWomble(userID)
+         .select()
+         .then(wombleObj => {
+             wombleObj.kinks = kinks;
+             return wombleObj;
+         })
+     })
 }
 
 // function saveTimes(time, testConn) {
