@@ -8,6 +8,10 @@ router.get('/', (req, res)=> {
    res.render('./landing')
 })
 
+router.get('/home', (req, res) => {
+  res.render('./front-page')
+})
+
 router.get('/womble', (req, res) => {
     db.getWombles()
     .then(wombles => {
