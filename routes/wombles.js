@@ -5,7 +5,7 @@ const db = require('../db')
 
 
 router.get('/', (req, res)=> {
-   res.send('wowoowososoowow')
+   res.render('./landing')
 })
 
 router.get('/womble', (req, res) => {
