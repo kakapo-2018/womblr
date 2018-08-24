@@ -25,12 +25,12 @@ router.get('/womble/:id', (req, res) => {
 
 })
 
-router.get('/test', (req, res) =>{
-    db.womblesAndKinks(41)
-    .then(data => {
-     res.send(data)
-    })
-})
+// router.get('/test', (req, res) =>{
+//     db.womblesAndKinks(41)
+//     .then(data => {
+//      res.send(data)
+//     })
+// })
 
 router.get('/search', (req, res)=>{
     res.render('search')
